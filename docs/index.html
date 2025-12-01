@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Status demo</title>
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; padding: 1rem }
+      .banner { padding: 1rem; border-radius: 6px; color: white; margin-bottom: 1rem }
+      .info { background: #2b6cb0 }
+      .warning { background: #d69e2e }
+      .error { background: #c53030 }
+      .critical { background: #742a2a }
+    </style>
+  </head>
+  <body>
+    <h1>Status demo</h1>
+    <div id="status-root">Loading status...</div>
+
+    <script>
+      function render(status) {
+        const root = document.getElementById('status-root')
+        if (!status) {
+          root.innerText = 'Geen status beschikbaar.'
+          return
+        }
+
+        const severity = status.severity || status.status || 'info'
+        const cls = ['info','warning','error','critical'].includes(severity) ? severity : 'info'
+
+        root.innerHTML = `
+          <div class="banner ${cls}">
+            <strong>${(status.status || '').toUpperCase()}</strong>
+            <div>${status.message || ''}</div>
+            <div style="font-size:0.85em;opacity:0.9">Affect: ${ (status.affectedServices || []).join(', ') }</div>
+          </div>
+          <pre>${JSON.stringify(status,null,2)}</pre>
+        `
+      }
+
+      fetch('/status.json', { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : Promise.reject('no ok'))
+        .then(data => {
+          render(data)
+        })
+        .catch(err => {
+          try {
+            const stored = localStorage.getItem('status')
+            if (stored) {
+              render(JSON.parse(stored))
+              return
+            }
+          } catch(e){}
+          document.getElementById('status-root').innerText = 'Kon status niet laden.'
+        })
+    </script>
+  </body>
+</html>

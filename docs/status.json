@@ -1,0 +1,9 @@
+{
+  "version": "2024-11-18T10:30:00Z",
+  "status": "warning",
+  "message": "Storing in video-afspeel functionaliteit. We werken aan een oplossing.",
+  "severity": "warning",
+  "affectedServices": ["video", "graphql"],
+  "dismissible": true,
+  "expiresAt": "2024-11-18T18:00:00Z"
+}
