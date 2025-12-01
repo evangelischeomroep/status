@@ -14,13 +14,15 @@ Deze README beschrijft het `status.json`-bestand dat als statische fallback gebr
 
 **Voorbeeld**
 ```
-{
-  "version": "2024-11-18T10:30:00Z",
-  "status": "warning",
-  "message": "Storing in video-afspeel functionaliteit. We werken aan een oplossing.",
-  "affectedServices": ["media"],
-  "expiresAt": "2024-11-18T18:00:00Z"
-}
+[
+    {
+        "version": "2024-11-18T10:30:00Z",
+        "status": "warning",
+        "message": "Storing in video-afspeel functionaliteit. We werken aan een oplossing.",
+        "affectedServices": ["media"],
+        "expiresAt": "2024-11-18T18:00:00Z"
+    }
+]
 ```
 
 **Aanbevelingen & semantiek**
