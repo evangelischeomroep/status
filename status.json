@@ -1,16 +1,9 @@
 [
   {
     "version": "2025-12-01T01:00:00Z",
-    "status": "info",
-    "message": "Mededeling: De website zal morgen tijdelijk offline zijn voor onderhoud.",
+    "status": "warning",
+    "message": "Mededeling: Door een storing is de website soms niet bereikbaar.",
     "affectedServices": ["checkout"],
     "expiresAt": "2025-12-02T18:00:00Z"
-  },
-    {
-    "version": "2025-12-01T01:00:00Z",
-    "status": "error",
-    "message": "Let op: het inloggen is tijdelijk niet mogelijk.",
-    "affectedServices": ["auth"],
-    "expiresAt": "2025-12-02T18:00:00Z"
-  }.
+  }
 ]
