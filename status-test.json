@@ -1,0 +1,9 @@
+[
+  {
+    "version": "2025-12-08T01:00:00Z",
+    "status": "warn",
+    "message": "Mededeling: Door grote drukte kan reactie vertraging oplopen.",
+    "affectedServices": ["contact"],
+    "expiresAt": "2025-12-09T18:00:00Z"
+  }
+]

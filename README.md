@@ -9,8 +9,18 @@ Deze README beschrijft het `status.json`-bestand dat als statische fallback gebr
 - `version` (string, ISO 8601 timestamp): tijdstempel of versie van deze status. Gebruik UTC (bv. `2025-12-01T10:30:00Z`).
 - `status` (string): korte label, bijvoorbeeld `info`, `warning`, `error`.
 - `message` (string): korte, menselijke leesbare verklaring die in de UI wordt getoond.
-- `affectedServices` (array[string]): lijst met servicenaam(en) intern gebruikt (bv. `checkout`, `content`, `media`, `auth`, `interaction`).
+- `affectedServices` (array[string]): lijst met servicenaam(en) intern gebruikt (bv. `checkout`, `content`, `media`, `auth`, `interaction`, `crm`).
 - `expiresAt` (string, ISO 8601, optioneel): tijdstip waarop de melding verloopt — clients kunnen hierop opnieuw checken of auto-dismissen.
+
+**Categorieën en tagging**
+- `checkout`: betaal- en bestelstromen, inclusief betalingsproviders. Gebruik deze categorie bij issues die de financiële flow raken.
+- `contact`: Gebruik deze categorie bij issues in het afhandelen van Calls. Bijv. issues in contact-formulieren die een call aanmaken via het crm of capaciteitsproblemen bij KCC.
+- `content`: rendering of CMS-gerelateerde assets (pagina’s, media, video). Als de site/ui traag is of statische content faalt, gebruik je deze categorie.
+- `auth`: inlog/account (auth-provider).
+- `interaction`: chat, notificaties en andere real-time communicatie.
+- `media`: streaming, videospeler of uitzending-specifieke services die losstaan van de algemene content-ervaring.
+
+Je kunt meerdere categorieën tegelijk toewijzen via `affectedServices` (bijv. `["crm","checkout"]` wanneer een CRM-issue ook checkout-devices raakt).
 
 **Voorbeeld**
 ```
