@@ -2,8 +2,15 @@
   {
     "version": "2025-12-08T01:00:00Z",
     "status": "warning",
-    "message": "Mededeling: Door grote drukte kan reactie vertraging oplopen.",
+    "message": "In verband met de feestdagen kan het wat langer duren voordat je een reactie ontvangt.",
     "affectedServices": ["contact"],
     "expiresAt": "2025-12-09T18:00:00Z"
+  },
+  {
+    "version": "2025-12-08T01:00:00Z",
+    "status": "info",
+    "message": "Mededeling: Wij doen ons best om je zo snel mogelijk te helpen.",
+    "affectedServices": ["contact"],
+    "expiresAt": "2025-12-10T18:00:00Z"
   }
 ]
