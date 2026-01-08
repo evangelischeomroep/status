@@ -7,5 +7,14 @@
       "contact"
     ],
     "expiresAt": "2026-01-13T01:00:00Z"
+  },
+  {
+    "version": "2026-01-13T01:00:00Z",
+    "status": "info",
+    "message": "Op maandag 12 januari kan het gedurende korte tijd niet mogelijk zijn om bestellingen te plaatsen. Onze excuses voor het ongemak.",
+    "affectedServices": [
+      "checkout"
+    ],
+    "expiresAt": "2026-01-13T01:00:00Z"
   }
 ]
