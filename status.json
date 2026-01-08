@@ -1,2 +1,11 @@
 [
+  {
+    "version": "2026-01-13T01:00:00Z",
+    "status": "info",
+    "message": "Vanaf maandag 12 januari kan het langer duren je vraag te verwerken. Ons excuses voor het ongemak.",
+    "affectedServices": [
+      "contact"
+    ],
+    "expiresAt": "2026-01-13T01:00:00Z"
+  }
 ]
