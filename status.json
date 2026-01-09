@@ -11,7 +11,7 @@
   {
     "version": "2026-01-13T01:00:00Z",
     "status": "warning",
-    "message": "Op maandag 12 januari kan het gedurende korte tijd niet mogelijk zijn om bestellingen te plaatsen. Onze excuses voor het ongemak.",
+    "message": "Op maandag 12 januari is het tijdelijk niet mogelijk om je betaling te starten. Onze excuses voor het ongemak.",
     "affectedServices": [
       "checkout"
     ],
