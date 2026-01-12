@@ -11,7 +11,7 @@
   {
     "version": "2026-01-13T01:00:00Z",
     "status": "warning",
-    "message": "Wegens onderhoud kan het even duren voordat je bestelling is verwerkt. Onze excuses voor het ongemak.",
+    "message": "Wegens onderhoud kan het even duren voordat je bestelling of donatie is verwerkt. Onze excuses voor het ongemak.",
     "affectedServices": [
       "checkout"
     ],
