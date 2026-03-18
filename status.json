@@ -2,7 +2,7 @@
   {
     "version": "2026-03-18T01:00:00Z",
     "status": "error",
-    "message": "Door een fout in onze website is het tijdelijk niet mogelijk om je formulier te verzenden. Probeer het later vandaag opnieuw.",
+    "message": "Door een fout in onze website is het soms niet mogelijk om je formulier te verzenden. Probeer het later vandaag opnieuw.",
     "affectedServices": [
       "contact"
     ],
