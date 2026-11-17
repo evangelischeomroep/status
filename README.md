@@ -1,29 +1,32 @@
-# Status JSON — uitleg en gebruik
+<img src="./.github/banner.svg" alt="status" width="100%">
 
-Deze README beschrijft het `status.json`-bestand dat als statische fallback gebruikt kan worden voor Next.js- en andere webapplicaties.
+<p align="center">The static file that tells EO websites which services have an incident.</p>
 
-**Doel**
-- Een klein, statisch JSON-bestand hosten op een onafhankelijke CDN (GitHub Pages, Cloudflare Pages, S3+CloudFront) zodat clients bij het laden snel kunnen controleren of er een incident is en een banner/alert tonen — ook als backend-systemen  uitvallen.
+<p align="center">
+  <a href="https://evangelischeomroep.github.io/status/status.json">Production</a>
+</p>
 
-**Schema (veld-uitleg)**
-- `version` (string, ISO 8601 timestamp): tijdstempel of versie van deze status. Gebruik UTC (bv. `2025-12-01T10:30:00Z`).
-- `status` (string): korte label, bijvoorbeeld `info`, `warning`, `error`.
-- `message` (string): korte, menselijke leesbare verklaring die in de UI wordt getoond.
-- `affectedServices` (array[string]): lijst met servicenaam(en) intern gebruikt (bv. `checkout`, `content`, `media`, `auth`, `interaction`, `crm`).
-- `expiresAt` (string, ISO 8601, optioneel): tijdstip waarop de melding verloopt — clients kunnen hierop opnieuw checken of auto-dismissen.
+`status.json` lists the current incidents and announcements, each tagged with the services it affects. GitHub Pages serves it, apart from the EO's own infrastructure, so a website can still warn its visitors when the backend is down. The EO's Next.js websites read it every minute and show a banner on the pages that use an affected service.
 
-**Categorieën en tagging**
-- `checkout`: betaal- en bestelstromen, inclusief betalingsproviders. Gebruik deze categorie bij issues die de financiële flow raken.
-- `contact`: Gebruik deze categorie bij issues in het afhandelen van Calls. Bijv. issues in contact-formulieren die een call aanmaken via het crm of capaciteitsproblemen bij KCC.
-- `content`: rendering of CMS-gerelateerde assets (pagina’s, media, video). Als de site/ui traag is of statische content faalt, gebruik je deze categorie.
-- `auth`: inlog/account (auth-provider).
-- `interaction`: chat, notificaties en andere real-time communicatie.
-- `media`: streaming, videospeler of uitzending-specifieke services die losstaan van de algemene content-ervaring.
+## What it does
 
-Je kunt meerdere categorieën tegelijk toewijzen via `affectedServices` (bijv. `["crm","checkout"]` wanneer een CRM-issue ook checkout-devices raakt).
+- **A banner per service.** Each message names the services it affects, so a checkout page shows only checkout problems.
+- **Messages that expire.** A message with an expiry time disappears by itself.
+- **Reachable during an outage.** The file does not depend on any EO system, so it keeps working when they fail.
 
-**Voorbeeld**
+## Getting started
+
+```bash
+curl https://evangelischeomroep.github.io/status/status.json
 ```
+
+To post or clear a message, change `status.json` on `main`. GitHub Pages publishes it, and websites pick it up within a minute.
+
+## Format
+
+The file is an array of messages; `[]` means no messages.
+
+```json
 [
   {
     "version": "2025-12-01T01:00:00Z",
@@ -35,7 +38,25 @@ Je kunt meerdere categorieën tegelijk toewijzen via `affectedServices` (bijv. `
 ]
 ```
 
-**Aanbevelingen & semantiek**
-- Gebruik ISO 8601 timestamps voor `version` en `expiresAt` (UTC) zodat clients eenvoudig kunnen vergelijken.
-- Houd `message` kort en actiegericht: wat is er niet beschikbaar, en wat kan de gebruiker verwachten?
-- Stel `status` consistent in: `info` = informatief, `warning` = beperkte degradatie, `error` = functionaliteit kapot.
+- `version` (string, ISO 8601 timestamp): the time or version of this status. Use UTC, for example `2025-12-01T10:30:00Z`.
+- `status` (string): `info` is informational, `warning` is limited degradation, `error` is broken functionality. Set it consistently.
+- `message` (string): a short, human-readable explanation shown in the UI. Keep it short and actionable: what is unavailable, and what can the visitor expect?
+- `affectedServices` (array of strings): one or more of the categories below.
+- `expiresAt` (string, ISO 8601 timestamp, optional): when the message expires. Clients can check again at that moment or dismiss it automatically.
+
+Use UTC ISO 8601 timestamps for `version` and `expiresAt`, so clients can compare them easily.
+
+### Categories
+
+- `checkout`: payment and order flows, including payment providers. Use it for issues that affect the financial flow.
+- `contact`: handling calls, for example contact forms that create a call in the CRM, or capacity problems at customer service.
+- `content`: rendering or CMS-related assets (pages, media, video). Use it when the site or UI is slow or static content fails.
+- `auth`: login and accounts (the auth provider).
+- `interaction`: chat, notifications and other real-time communication.
+- `media`: streaming, the video player or broadcast-specific services that stand apart from the general content experience.
+
+A message can name several categories, for example `["contact","checkout"]` when a CRM issue also affects checkout.
+
+## Contributing
+
+Working on this repo? [AGENTS.md](./AGENTS.md) has the setup, conventions and checks.
